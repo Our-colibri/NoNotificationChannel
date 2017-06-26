@@ -49,7 +49,7 @@ install {
             project {
                 packaging 'aar'
 
-                name 'Android debug Util.'
+                name 'Android Notification Util.'
                 url siteUrl
 
                 licenses {
@@ -96,17 +96,14 @@ artifacts {
 }
 
 bintray {
-    if (properties.hasProperty("BINTRAY_USER")) {
-        user = properties.getProperty("BINTRAY_USER")
-    }
-    if (properties.hasProperty("BINTRAY_KEY")) {
-        key = properties.getProperty("BINTRAY_KEY")
-    }
+    user = properties.getProperty("BINTRAY_USER","user")
+    key = properties.getProperty("BINTRAY_KEY","key")
+
 
     configurations = ['archives']
     pkg {
         repo = "maven"
-        name = "jp.kemomimi.util.NoNotificationChannel"
+        name = "NoNotificationChannel"
         websiteUrl = siteUrl
         vcsUrl = gitUrl
         licenses = ["MIT"]
