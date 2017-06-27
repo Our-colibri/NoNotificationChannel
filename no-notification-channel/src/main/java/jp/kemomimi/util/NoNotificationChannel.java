@@ -19,10 +19,16 @@ import java.util.List;
 public class NoNotificationChannel {
     private static final String CHANNELGROUPID = "NstaNotif";
     private static String mGroupName = "Notification group";
+    private static int mPrio = NotificationManager.IMPORTANCE_DEFAULT;
 
     @TargetApi(Build.VERSION_CODES.O)
     public static void setGroupName(String groupName){
         mGroupName = groupName;
+    }
+
+    @TargetApi(Build.VERSION_CODES.O)
+    public static void setImportance(int importance){
+        mPrio = importance;
     }
 
     @TargetApi(Build.VERSION_CODES.O)
@@ -73,13 +79,14 @@ public class NoNotificationChannel {
 //                            manager.deleteNotificationChannel(c.getId());
 //                        }
                         manager.deleteNotificationChannelGroup(CHANNELGROUPID);
+                        break;
                     }
                 }
             }
 
             NotificationChannelGroup ncg = new NotificationChannelGroup(CHANNELGROUPID, mGroupName);
             NotificationChannel nc = new NotificationChannel(channelid,
-                    channelName, NotificationManager.IMPORTANCE_DEFAULT);
+                    channelName, mPrio);
 
             nc.setLockscreenVisibility(notification.visibility);
             nc.enableLights((notification.flags & Notification.FLAG_SHOW_LIGHTS) == 1);
