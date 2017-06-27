@@ -65,17 +65,18 @@ public class NoNotificationChannel {
                 e.printStackTrace();
             }
 
-//            List<NotificationChannelGroup> ncgs = manager.getNotificationChannelGroups();
-//            if(ncgs != null){
-//                for(NotificationChannelGroup g:ncgs){
-//                    if(g.getId().equals("NstaNotif")){
+            List<NotificationChannelGroup> ncgs = manager.getNotificationChannelGroups();
+            if(ncgs != null){
+                for(NotificationChannelGroup g:ncgs){
+                    if(g.getId().equals(CHANNELGROUPID)){
 //                        for(NotificationChannel c:g.getChannels()){
 //                            manager.deleteNotificationChannel(c.getId());
 //                        }
-//                    }
-//                }
-//            }
-            manager.deleteNotificationChannelGroup(CHANNELGROUPID);
+                        manager.deleteNotificationChannelGroup(CHANNELGROUPID);
+                    }
+                }
+            }
+
             NotificationChannelGroup ncg = new NotificationChannelGroup(CHANNELGROUPID, mGroupName);
             NotificationChannel nc = new NotificationChannel(channelid,
                     channelName, NotificationManager.IMPORTANCE_DEFAULT);
